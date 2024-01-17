@@ -33,6 +33,10 @@ impl Token {
         substrs
     }
 
+    fn leet_sub(password: String) -> String {
+        password
+    }
+
 }
 
 impl Match for Token {

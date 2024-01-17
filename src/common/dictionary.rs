@@ -31,9 +31,9 @@ impl Dictionary {
 
 mod tests {
     use std::{fs::File, collections::HashMap};
-
     use super::Dictionary;
 
+    
     #[test]
     fn test_build() -> std::io::Result<()> {
         let mut dict = Dictionary::new();
