@@ -3,6 +3,6 @@ pub(crate) mod token;
 
 use patterns::Patterns;
 
-pub(crate) trait Match {
-    fn get_matches() -> Patterns;
+pub trait Match {
+    fn get_matches(&self, password: String) -> Patterns;
 } 

@@ -1,27 +1,30 @@
-use std::{collections::HashMap, fs::File, io::{BufReader, BufRead}};
+use std::{collections::HashMap, fs::File, io::{BufReader, BufRead}, cmp::min};
 
-pub(crate) struct Dictionary {
-    map: HashMap<String, u128>
+pub struct Dictionary {
+    map: HashMap<String, u128>,
+    pub(crate) min_len: usize
 }
 
 impl Dictionary {
-    pub(crate) fn new() -> Self {
+    pub fn new() -> Self {
         Self {
-            map: HashMap::new()
+            map: HashMap::new(),
+            min_len: usize::MAX
         }
     }
 
-    pub(crate) fn build_from(&mut self, file: &File) -> std::io::Result<()> {
+    pub fn build_from(&mut self, file: &File) -> std::io::Result<()> {
         let buffer: BufReader<&File> = BufReader::new(file);
         for (rank, line) in buffer.lines().enumerate() {
             let line = line.expect("No more lines to be read");
+            self.min_len = min(line.len(), self.min_len);
             self.map.entry(line).or_insert((rank + 1) as u128);
         }
 
         Ok(())
     }
 
-    pub(crate) fn get(&self, word: &str) -> Option<&u128> {
+    pub(crate) fn get_rank(&self, word: &str) -> Option<&u128> {
         self.map.get(word)
     }
 }

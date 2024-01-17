@@ -1,7 +1,7 @@
 use super::token::Token;
 
-pub(crate) enum Patterns {
-    Token(Token),
+pub enum Patterns {
+    Token(Vec<String>),
     Reveresed,
     Sequence,
     Repeat,
