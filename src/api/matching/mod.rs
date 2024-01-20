@@ -4,5 +4,5 @@ pub(crate) mod token;
 use patterns::Patterns;
 
 pub trait Match {
-    fn get_matches(&self, password: String) -> Patterns;
+    fn get_matches(&mut self, password: String) -> Patterns;
 } 

@@ -1,6 +1,13 @@
-pub(crate) mod matching;
-pub(crate) mod common;
+pub(crate) mod api;
 
-fn main() {
-    println!("Hello, world!");
+use slint::include_modules;
+
+include_modules!();
+fn main() -> std::io::Result<()> {
+    let zxcvbn = api::Zxcvbn::new();
+    let ui = ZxcvbnUI::new()
+        .expect("Raised a PlatformError");
+
+    let _ = ui.run();
+    Ok(())
 }
