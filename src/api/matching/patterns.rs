@@ -1,5 +1,3 @@
-use super::token::Token;
-
 pub enum Patterns {
     Token(Vec<String>),
     Reveresed(Vec<String>),
