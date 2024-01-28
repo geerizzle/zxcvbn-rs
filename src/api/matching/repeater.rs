@@ -1,4 +1,6 @@
 use fancy_regex::Regex;
+
+use super::{patterns::Patterns, Match};
 struct Repeater {
     greedy: Regex,
     lazy: Regex,
@@ -26,6 +28,14 @@ impl Default for Repeater {
             greedy: Regex::new(r"(.+)\1+").unwrap(),
             lazy: Regex::new(r"(.+?)\1+").unwrap(),
         }
+    }
+}
+
+impl Match for Repeater {
+    fn get_matches(&mut self, password: String) -> Patterns {
+        let repeater = Repeater::new();
+        let result = repeater.get_largest(password.as_str());
+        Patterns::Repeat(vec![result])
     }
 }
 
