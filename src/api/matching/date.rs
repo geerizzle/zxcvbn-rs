@@ -1,4 +1,4 @@
-use regex::Regex;
+use fancy_regex::Regex;
 
 use super::patterns::Patterns;
 use super::Match;
@@ -18,7 +18,7 @@ impl Match for Date {
         let dates: Vec<String> = self
             .regex
             .captures_iter(password.as_str())
-            .filter_map(|cap| cap.get(0))
+            .filter_map(|cap| cap.unwrap().get(0))
             .map(|m| m.as_str().to_string())
             .collect();
 
