@@ -49,6 +49,8 @@ mod tests {
         assert_eq!("aabaab".to_string(), test);
         let test = repeater.get_largest("aaaaa");
         assert_eq!("aaaaa".to_string(), test);
+        let test = repeater.get_largest("l0giT3CHl0giT3CH");
+        assert_eq!("l0giT3CHl0giT3CH".to_string(), test);
         Ok(())
     }
 }
