@@ -1,4 +1,5 @@
 pub(crate) mod date;
+pub(crate) mod keyboard;
 pub(crate) mod patterns;
 pub(crate) mod repeater;
 pub(crate) mod sequencer;

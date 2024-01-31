@@ -46,7 +46,7 @@ impl Match for Sequencer {
 mod tests {
     use crate::api::matching::sequencer::Sequencer;
     #[test]
-    fn test_get_sequnce() -> std::io::Result<()> {
+    fn test_get_sequence() -> std::io::Result<()> {
         let seq = Sequencer::new();
         let test = seq.get_sequence("abcd", &1);
         assert_eq!(vec!["abcd".to_string()], test);

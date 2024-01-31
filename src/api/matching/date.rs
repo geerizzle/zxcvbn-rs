@@ -35,10 +35,9 @@ impl Default for Date {
 }
 
 mod tests {
-    use crate::api::matching::Match;
-
     use super::Date;
     use super::Patterns;
+    use crate::api::matching::Match;
 
     #[test]
     fn test_matches() -> std::io::Result<()> {
