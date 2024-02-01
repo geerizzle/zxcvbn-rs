@@ -2,9 +2,236 @@ use lazy_static::lazy_static;
 use std::collections::HashMap;
 
 lazy_static! {
-    static ref KEYS_MAP: HashMap<&'static str, Vec<Option<&'static str>>> = {
-        let mut map: HashMap<&str, Vec<Option<&str>>> = HashMap::new();
-        map.insert("q", vec![Some("w"), Some("a"), None, Some("1")]);
+    pub(crate) static ref KEYS_MAP: HashMap<String, Vec<Option<String>>> = {
+        let mut map: HashMap<String, Vec<Option<String>>> = HashMap::new();
+        map.insert(
+            "q".to_string(),
+            vec![
+                Some("w".to_string()),
+                Some("a".to_string()),
+                None,
+                Some("1".to_string()),
+            ],
+        );
+        map.insert(
+            "w".to_string(),
+            vec![
+                Some("e".to_string()),
+                Some("s".to_string()),
+                Some("q".to_string()),
+                Some("2".to_string()),
+            ],
+        );
+        map.insert(
+            "e".to_string(),
+            vec![
+                Some("r".to_string()),
+                Some("d".to_string()),
+                Some("w".to_string()),
+                Some("3".to_string()),
+            ],
+        );
+        map.insert(
+            "r".to_string(),
+            vec![
+                Some("t".to_string()),
+                Some("f".to_string()),
+                Some("e".to_string()),
+                Some("4".to_string()),
+            ],
+        );
+        map.insert(
+            "t".to_string(),
+            vec![
+                Some("y".to_string()),
+                Some("g".to_string()),
+                Some("r".to_string()),
+                Some("5".to_string()),
+            ],
+        );
+        map.insert(
+            "y".to_string(),
+            vec![
+                Some("u".to_string()),
+                Some("h".to_string()),
+                Some("t".to_string()),
+                Some("6".to_string()),
+            ],
+        );
+        map.insert(
+            "u".to_string(),
+            vec![
+                Some("i".to_string()),
+                Some("j".to_string()),
+                Some("y".to_string()),
+                Some("7".to_string()),
+            ],
+        );
+        map.insert(
+            "i".to_string(),
+            vec![
+                Some("o".to_string()),
+                Some("k".to_string()),
+                Some("u".to_string()),
+                Some("8".to_string()),
+            ],
+        );
+        map.insert(
+            "o".to_string(),
+            vec![
+                Some("p".to_string()),
+                Some("l".to_string()),
+                Some("i".to_string()),
+                Some("9".to_string()),
+            ],
+        );
+        map.insert(
+            "p".to_string(),
+            vec![None, None, Some("o".to_string()), Some("0".to_string())],
+        );
+        map.insert(
+            "a".to_string(),
+            vec![
+                Some("s".to_string()),
+                Some("z".to_string()),
+                None,
+                Some("q".to_string()),
+            ],
+        );
+        map.insert(
+            "s".to_string(),
+            vec![
+                Some("d".to_string()),
+                Some("x".to_string()),
+                Some("a".to_string()),
+                Some("w".to_string()),
+            ],
+        );
+        map.insert(
+            "d".to_string(),
+            vec![
+                Some("f".to_string()),
+                Some("c".to_string()),
+                Some("s".to_string()),
+                Some("e".to_string()),
+            ],
+        );
+        map.insert(
+            "f".to_string(),
+            vec![
+                Some("g".to_string()),
+                Some("v".to_string()),
+                Some("d".to_string()),
+                Some("r".to_string()),
+            ],
+        );
+        map.insert(
+            "g".to_string(),
+            vec![
+                Some("h".to_string()),
+                Some("b".to_string()),
+                Some("f".to_string()),
+                Some("t".to_string()),
+            ],
+        );
+        map.insert(
+            "h".to_string(),
+            vec![
+                Some("j".to_string()),
+                Some("n".to_string()),
+                Some("g".to_string()),
+                Some("y".to_string()),
+            ],
+        );
+        map.insert(
+            "j".to_string(),
+            vec![
+                Some("k".to_string()),
+                Some("m".to_string()),
+                Some("h".to_string()),
+                Some("u".to_string()),
+            ],
+        );
+        map.insert(
+            "k".to_string(),
+            vec![
+                Some("l".to_string()),
+                None,
+                Some("j".to_string()),
+                Some("i".to_string()),
+            ],
+        );
+        map.insert(
+            "l".to_string(),
+            vec![None, None, Some("k".to_string()), Some("o".to_string())],
+        );
+        map.insert(
+            "z".to_string(),
+            vec![Some("x".to_string()), None, None, Some("o".to_string())],
+        );
+        map.insert(
+            "x".to_string(),
+            vec![
+                Some("c".to_string()),
+                None,
+                Some("z".to_string()),
+                Some("a".to_string()),
+            ],
+        );
+        map.insert(
+            "c".to_string(),
+            vec![
+                Some("v".to_string()),
+                None,
+                Some("x".to_string()),
+                Some("s".to_string()),
+            ],
+        );
+        map.insert(
+            "v".to_string(),
+            vec![
+                Some("b".to_string()),
+                None,
+                Some("c".to_string()),
+                Some("d".to_string()),
+            ],
+        );
+        map.insert(
+            "b".to_string(),
+            vec![
+                Some("n".to_string()),
+                None,
+                Some("v".to_string()),
+                Some("f".to_string()),
+            ],
+        );
+        map.insert(
+            "n".to_string(),
+            vec![
+                Some("m".to_string()),
+                None,
+                Some("b".to_string()),
+                Some("g".to_string()),
+            ],
+        );
+        map.insert(
+            "m".to_string(),
+            vec![None, None, Some("n".to_string()), Some("h".to_string())],
+        );
+        map
+    };
+    pub(crate) static ref SHIFT_KEYS: HashMap<&'static str, &'static str> = {
+        let mut map: HashMap<&str, &str> = HashMap::new();
+        map.insert("1", "!");
+        map.insert("2", "@");
+        map.insert("3", "#");
+        map.insert("4", "$");
+        map.insert("5", "%");
+        map.insert("6", "^");
+        map.insert("7", "&");
+        map.insert("8", "*");
+        map.insert("9", "(");
+        map.insert("0", ")");
         map
     };
 }

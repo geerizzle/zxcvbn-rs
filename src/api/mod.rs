@@ -1,15 +1,18 @@
 pub(crate) mod dictionary;
 pub(crate) mod matching;
+pub mod substitution;
 
 use self::{
     dictionary::Dictionary,
     matching::{patterns::Patterns, sequencer::Sequencer, token::Token},
+    substitution::Substitution,
 };
-use std::fs::File;
+use std::{fs::File, io::BufReader};
 
 pub struct Zxcvbn {
     pwn_time: Option<u32>,
     dictionary: Dictionary,
+    substitution: Option<Substitution>,
 }
 
 impl<'a> Zxcvbn {
@@ -17,14 +20,18 @@ impl<'a> Zxcvbn {
         Self {
             pwn_time: None,
             dictionary: Default::default(),
+            substitution: None,
         }
     }
 
-    // TODO: need to handle the substitutions to be full token search
-    // TODO: inserting custom substitution tables in TSV format
     pub fn set_dictionary(&mut self, file: &File) -> () {
         self.dictionary = Dictionary::new();
         let _ = self.dictionary.build_from(file);
+    }
+
+    pub fn set_substitution(&mut self, buffer: &File) -> () {
+        let mut subs = Substitution::new();
+        subs.build_from(buffer);
     }
 
     pub fn get_patterns(&mut self, password: &str) -> Option<Vec<Patterns>> {
