@@ -1,11 +1,13 @@
 use crate::consts::keys::{KEYS_MAP, SHIFT_KEYS};
 use std::{collections::HashMap, fs::File};
 
+use super::{patterns::Patterns, Match};
+
 struct Keyboard {
     map: HashMap<String, Vec<Option<String>>>,
 }
 
-struct KeyMatch {
+pub(crate) struct KeyMatch {
     sequence: String,
     chain: u8,
     turns: u8,
@@ -109,6 +111,13 @@ impl Keyboard {
         }
 
         (key_pos, shifted)
+    }
+}
+
+impl Match for Keyboard {
+    fn get_matches(&mut self, password: String) -> super::patterns::Patterns {
+        let matches = self.get_path(password.as_str());
+        Patterns::Keyboard(matches)
     }
 }
 
