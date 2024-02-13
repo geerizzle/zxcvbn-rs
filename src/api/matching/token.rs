@@ -10,16 +10,11 @@ pub(crate) struct Token<'a> {
 pub(crate) struct TokenMatch {
     matched: String,
     rank: u128,
-    guesses: u128,
 }
 
 impl TokenMatch {
     fn new(matched: String, rank: u128) -> Self {
-        Self {
-            matched,
-            rank,
-            guesses: u128::MIN,
-        }
+        Self { matched, rank }
     }
 }
 

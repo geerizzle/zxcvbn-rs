@@ -1,4 +1,5 @@
 pub(crate) mod dictionary;
+pub(crate) mod estimate;
 pub(crate) mod matching;
 pub mod substitution;
 
