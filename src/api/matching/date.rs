@@ -3,8 +3,18 @@ use fancy_regex::Regex;
 use super::patterns::Patterns;
 use super::Match;
 
-struct Date {
+pub(crate) struct Date {
     regex: Regex,
+}
+
+pub(crate) struct DateMatch {
+    matched: String,
+}
+
+impl DateMatch {
+    fn new(matched: String) -> Self {
+        Self { matched }
+    }
 }
 
 impl Date {
@@ -15,11 +25,11 @@ impl Date {
 
 impl Match for Date {
     fn get_matches(&mut self, password: String) -> Patterns {
-        let dates: Vec<String> = self
+        let dates: Vec<DateMatch> = self
             .regex
             .captures_iter(password.as_str())
             .filter_map(|cap| cap.unwrap().get(0))
-            .map(|m| m.as_str().to_string())
+            .map(|m| DateMatch::new(m.as_str().to_string()))
             .collect();
 
         Patterns::Date(dates)
@@ -45,7 +55,8 @@ mod tests {
         let matches = date.get_matches("11-23-45lenovo11/23/45".to_string());
         match matches {
             Patterns::Date(test) => {
-                assert_eq!(vec!["11-23-45", "11/23/45"], test)
+                let dates: Vec<String> = test.iter().map(|x| x.matched.to_string()).collect();
+                assert_eq!(vec!["11-23-45", "11/23/45"], dates)
             }
             _ => (),
         }
